@@ -4,4 +4,9 @@
 # In a list format
 # Where only the part of the name after the first dash is displayed (refer to the example) 
 
-ls
+for file in *; do
+    if [ -f "$file" ] && [[ "$file" != .* ]]; then
+        name_after_dash=$(echo "$file" | cut -d'-' -f2-)
+        echo "$name_after_dash"
+    fi
+done

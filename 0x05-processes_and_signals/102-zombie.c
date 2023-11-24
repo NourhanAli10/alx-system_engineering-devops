@@ -23,15 +23,19 @@ int main(void)
 		{
 			wait(NULL);
 		}
-		else
+		else if (zombie_pid == 0)
 		{
 			printf("Zombie process created, PID: %d\n", getpid());
 		}
+
 	}
 	infinite_while();
 
 	return (0);
+
 }
+
+
 
 /**
 * infinite_while - Function that runs an infinite loop

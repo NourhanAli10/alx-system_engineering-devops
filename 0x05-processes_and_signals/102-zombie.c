@@ -13,19 +13,26 @@ int infinite_while(void);
 int main(void)
 {
 	int i;
-	pid_t zombie;
+
+	pid_t zombie_pid;
 
 	for (i = 0; i < 5; i++)
 	{
-		zombie = fork();
-		printf("Zombie process created, PID: %d\n", zombie);
+		zombie_pid = fork();
+		if (zombie_pid == -1)
+		{
+			return (0);
+		}
+		else if (zombie_pid == 0)
+		{
+			printf("Zombie process created, PID: %d\n", zombie_pid);
+		}
+
 	}
 
 	infinite_while();
 	return (0);
 }
-
-
 
 /**
 * infinite_while - Function that runs an infinite loop

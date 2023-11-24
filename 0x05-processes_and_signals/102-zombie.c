@@ -12,27 +12,19 @@ int infinite_while(void);
 
 int main(void)
 {
-	pid_t zombie_pid;
 	int i;
+	pid_t zombie;
 
 	for (i = 0; i < 5; i++)
 	{
-		zombie_pid = fork();
-
-		if (zombie_pid > 0)
-		{
-			wait(NULL);
-		}
-		else if (zombie_pid == 0)
-		{
-			printf("Zombie process created, PID: %d\n", getpid());
-		}
-
+		zombie = fork();
+		if (!zombie)
+			return (0);
+		printf("Zombie process created, PID: %d\n", zombie);
 	}
+
 	infinite_while();
-
 	return (0);
-
 }
 
 

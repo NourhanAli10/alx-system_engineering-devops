@@ -23,10 +23,9 @@ int main(void)
 		{
 			return (0);
 		}
-		else if (zombie_pid == 0)
-		{
+
 			printf("Zombie process created, PID: %d\n", zombie_pid);
-		}
+
 
 	}
 

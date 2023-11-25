@@ -19,7 +19,7 @@ int main(void)
 	for (i = 0; i < 5; i++)
 	{
 		zombie_pid = fork();
-		if (! zombie_pid)
+		if (!zombie_pid)
 		{
 			return (0);
 		}

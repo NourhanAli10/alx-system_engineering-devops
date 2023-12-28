@@ -5,4 +5,4 @@
 server is a phyiscal machine or virtual machine that provides services to another computers 
 referred to as clients
 ## What is the role of the domain name
-It helps users easily find your website and eliminates the need to memorize the site’s internet protocol (IP) address. 
+It helps users easily find  website and eliminates the need to memorize the site’s internet protocol (IP) address. 

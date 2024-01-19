@@ -1,11 +1,12 @@
-#Install flask version 2.1.0
+# 1-install_a_package.pp
 
-
-exec {'pip3 install flask':
-require => Exec['python-installed'],
-command => '/usr/bin/pip3 install flask==2.1.0'
+package { 'Flask':
+  ensure   => '2.1.0',
+  provider => 'pip3',
 }
 
-exec {'python-installed':
-command => '/usr/bin/which python3'
+exec { 'Refresh the shell':
+  command     => 'exec $SHELL',
+  path        => ['/bin', '/usr/bin', '/usr/local/bin'],
+  refreshonly => true,
 }

@@ -8,11 +8,11 @@ apt-get update
 apt-get install -y nginx
 
 # Allow Nginx through UFW
-sudo ufw allow 'Nginx HTTP'
+ufw allow 'Nginx HTTP'
 
 # Create a Hello World HTML page
 echo "Hello World!" > /var/www/html/index.html
 
 # Restart Nginx
-sudo service nginx restart
+service nginx restart
 

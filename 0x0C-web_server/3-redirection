@@ -9,7 +9,7 @@ sudo apt-get install -y nginx
 # Create a backup of the default Nginx configuration
 sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
-# Configure Nginx to use a custom 404 page with the string "Ceci n'est pas une page"
+# Configure Nginx to perform a 301 Moved Permanently redirection for /redirect_me
 echo "
 server {
     listen 80 default_server;
@@ -17,11 +17,8 @@ server {
 
     server_name _;
 
-    error_page 404 /404.html;
-    location = /404.html {
-        internal;
-        root /usr/share/nginx/html;
-        return 404 '<html><head><title>404 Not Found</title></head><body><h1>404 Not Found</h1><p>Ceci n\'est pas une page</p></body></html>';
+    location /redirect_me {
+        return 301 http://example.com/new_page; # Change 'http://example.com/new_page' to your desired redirection URL
     }
 
     # Additional server configuration...
@@ -34,4 +31,4 @@ sudo nginx -t
 sudo systemctl reload nginx
 
 # Output a message indicating successful configuration
-echo "Nginx has been configured with a custom 404 page containing the string 'Ceci n'est pas une page'."
+echo "Nginx has been configured for the 301 Moved Permanently redirection from /redirect_me to http://example.com/new_page."

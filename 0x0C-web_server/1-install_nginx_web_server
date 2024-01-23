@@ -2,10 +2,10 @@
 # install nginx
 
 # Update package list
-sudo apt update -y
+apt-get update
 
 # Install nginx
-sudo apt-get -y install nginx
+apt-get install -y nginx
 
 # Allow Nginx through UFW
 sudo ufw allow 'Nginx HTTP'

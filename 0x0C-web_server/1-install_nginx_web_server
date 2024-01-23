@@ -1,11 +1,25 @@
 #!/usr/bin/env bash
-# Installs nginx server
+# install nginx
 
+# Update package list
 sudo apt update -y
+
+# Install nginx
 sudo apt-get -y install nginx
+
+# Allow Nginx through UFW
 sudo ufw allow 'Nginx HTTP'
+
+# Create directory for the website
 sudo mkdir -p /var/www/website.com/html
+
+# Set ownership and permissions
 sudo chown -R $USER:$USER /var/www/website.com/html
 sudo chmod -R 755 /var/www/website.com/html
+
+# Create a Hello World HTML page
 echo "Hello World!" | sudo tee /var/www/website.com/html/index.html
+
+# Restart Nginx
 sudo service nginx restart
+

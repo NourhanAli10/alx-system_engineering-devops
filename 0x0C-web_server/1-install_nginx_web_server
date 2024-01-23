@@ -3,19 +3,27 @@
 # Nginx where it should be listening on port 80
 # Serve a page that would return a Hello World string
 
-sudo apt-get -y update  
 
-sudo apt-get -y install nginx 
+sudo apt-get update -y -qq && \
+	 sudo apt-get install nginx -y
+
+
+# starting nginx service
+sudo service nginx start
 
 # allowing nginx on firewall
 sudo ufw allow 'Nginx HTTP'
 
 # Give the user ownership to website files for easy editing
 sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www/html
+sudo chmod -R 755 /var/www
+
+# Backup default index
+cp /var/www/html/index.html /var/www/html/index.html.bckp
 
 # Creating new index
-echo -e "Hello World!" > var/www/html/index.html
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.html
 
 # Restarting nginx
 sudo service nginx restart
+

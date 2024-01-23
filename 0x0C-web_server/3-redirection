@@ -1,36 +1,36 @@
 #!/usr/bin/env bash
-#Configure your Nginx server so that /redirect_me is redirecting to another page.
+# Configures a new ubuntu machine by installing
+# Nginx where it should be listening on port 80
+# Serve a page that would return a Hello World string
+#
 
 
-# Update the package list to ensure the latest versions are available
-sudo apt-get update
+echo -e "Updating and installing Nginx.\n"
+sudo apt-get update -y -qq && \
+         sudo apt-get install nginx -y
 
-# Install Nginx web server if not already installed
-sudo apt-get install -y nginx
+echo -e "\nSetting up some minor stuff.\n"
 
-# Create a backup of the default Nginx configuration
-sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+# starting nginx service
+sudo service nginx start
 
-# Configure Nginx to perform a 301 Moved Permanently redirection for /redirect_me
-echo "
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+# allowing nginx on firewall
+sudo ufw allow 'Nginx HTTP'
 
-    server_name _;
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
 
-    location /redirect_me {
-        return 301 http://example.com/new_page; # Change 'http://example.com/new_page' to your desired redirection URL
-    }
+# Backup default index
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
 
-    # Additional server configuration...
-}" | sudo tee /etc/nginx/sites-available/default > /dev/null
+# Creating new index
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
 
-# Test the Nginx configuration
-sudo nginx -t
+# Setting up /redirect_me to a youtube video
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.google.com/ permanent;' /etc/nginx/sites-available/default
 
-# Reload Nginx to apply the changes
-sudo systemctl reload nginx
+# Restarting nginx
+sudo service nginx restart
 
-# Output a message indicating successful configuration
-echo "Nginx has been configured for the 301 Moved Permanently redirection from /redirect_me to http://example.com/new_page."
+echo -e "\nCompleted.\n"

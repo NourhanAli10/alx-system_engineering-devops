@@ -11,14 +11,14 @@ sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 
 # Create directory for the website
-sudo mkdir -p /var/www/website.com/html
+sudo mkdir -p /var/www/website/html
 
 # Set ownership and permissions
-sudo chown -R $USER:$USER /var/www/website.com/html
-sudo chmod -R 755 /var/www/website.com/html
+sudo chown -R $USER:$USER /var/www/html
+sudo chmod -R 755 /var/www/html
 
 # Create a Hello World HTML page
-echo "Hello World!" | sudo tee /var/www/website.com/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # Restart Nginx
 sudo service nginx restart

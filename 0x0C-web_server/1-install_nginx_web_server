@@ -8,4 +8,4 @@ sudo mkdir -p /var/www/website.com/html
 sudo chown -R $USER:$USER /var/www/website.com/html
 sudo chmod -R 755 /var/www/website.com/html
 echo "<html><body><p>Hello World!</p></body></html>" | sudo tee /var/www/website.com/html/index.html
-sudo /etc/init.d/nginx restart
+sudo service nginx restart

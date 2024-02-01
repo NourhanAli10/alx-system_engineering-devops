@@ -2,4 +2,4 @@
 # Using what you did for task #0, make your fix short and sweet.
 sudo sed -i '1 i\ \tserver { listen 80; }' /etc/nginx/sites-available/default
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-sudo service nginx restart
+sudo service nginx status | grep -q "not running" && sudo service nginx restart

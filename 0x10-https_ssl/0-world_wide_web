@@ -2,32 +2,38 @@
 # script that will display information about subdomains
 
 display_info() {
-    local sub_domain=$1
+    local subdomain=$1
     local domain=$2
 
-    # Perform DNS query for the subdomain
-    result=$(dig $sub_domain.$domain | grep -A1 'ANSWER SECTION:')
+    # Use dig to get the DNS information
+    result=$(dig +short $subdomain.$domain)
 
-    # Extract relevant information using awk
-    ip=$(echo "$result" | awk '/A/ {print $5}')
-    record_type=$(echo "$result" | awk '/A/ {print $4}')
+    # Extract record type and destination using awk
+    record_type=$(echo "$result" | awk '{print $1}')
+    destination=$(echo "$result" | awk '{print $2}')
 
     # Display the information
-    echo "The subdomain $sub_domain is a $record_type record and points to $ip"
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
 }
 
-# Main script
-if [ $# -eq 1 ]; then
-    # Display information for default subdomains
-    display_info www $1
-    display_info lb-01 $1
-    display_info web-01 $1
-    display_info web-02 $1
-elif [ $# -eq 2 ]; then
-    # Display information for the specified subdomain
-    display_info $2 $1
-else
-    # Incorrect number of arguments
-    echo "Usage: $0 <domain> [<subdomain>]"
+# Check if the required arguments are provided
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
     exit 1
+fi
+
+domain=$1
+subdomain=$2
+
+# If subdomain is not provided, use default subdomains
+if [ -z "$subdomain" ]; then
+    subdomains=("www" "lb-01" "web-01" "web-02")
+
+    # Loop through default subdomains
+    for default_subdomain in "${subdomains[@]}"; do
+        display_info "$default_subdomain" "$domain"
+    done
+else
+    # Display information for the specified subdomain
+    display_info "$subdomain" "$domain"
 fi

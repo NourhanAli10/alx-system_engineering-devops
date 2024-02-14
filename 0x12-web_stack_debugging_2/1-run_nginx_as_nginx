@@ -5,4 +5,5 @@ sudo apt-get install nginx
 chmod 644 /etc/nginx/nginx.conf
 sed -i 's/user nginx;/user nginx nginx;/g' /etc/nginx/nginx.conf
 sed -i '/^server {/a \    listen 8080;\n    listen [::]:8080;' /etc/nginx/sites-available/default
-sudo service nginx restart
+pkill apache2
+sudo service nginx start

@@ -6,4 +6,4 @@ chmod 644 /etc/nginx/nginx.conf
 sed -i 's/user nginx;/user nginx nginx;/g' /etc/nginx/nginx.conf
 sed -i '/^server {/a \    listen 8080;\n    listen [::]:8080;' /etc/nginx/sites-available/default
 pkill apache2
-sudo service nginx start
+sudo -u nginx service nginx start

@@ -10,7 +10,7 @@ if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/users"
     user_data = requests.get(url).json()
     todos = requests.get('https://jsonplaceholder.typicode.com/todos').json()
-    user_tasks = []
+    user_tasks = {}
     for user in user_data:
         taskList = []
         for task in todos:

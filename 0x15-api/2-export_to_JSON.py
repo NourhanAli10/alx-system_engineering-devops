@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""this module  to export data in the CSV format"""
+"""this module  to export data in the json format"""
 
 import json
 import requests

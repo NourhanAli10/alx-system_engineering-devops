@@ -1,21 +1,24 @@
 #!/usr/bin/python3
-""" Exporting csv files"""
-import json
+"""sub.py"""
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
-    """Read reddit API and return number subscribers """
-    username = 'ledbag123'
-    password = 'Reddit72'
-    user_pass_dict = {'user': username, 'passwd': password, 'api_type': 'json'}
-    headers = {'user-agent': '/u/ledbag123 API Python for Holberton School'}
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    client = requests.session()
-    client.headers = headers
-    r = client.get(url, allow_redirects=False)
-    if r.status_code == 200:
-        return (r.json()["data"]["subscribers"])
+    # Reddit API endpoint for subreddit information
+    username = 'nourhan1414'
+    refresh_token = "89041561833551-aB7ymnQsR1I6Oigfk63YrTnI-XYOsA"
+    user_pass_dict = {'user': username,'api_type': 'json'}
+    headers = {'user-agent': '/u/nourhan1414 API Python',
+               'Authorization': f'Bearer {refresh_token}'}
+    url = f'https://www.reddit.com/r/{subreddit}/about.json'
+    headers = {'User-Agent': ' u/IZMmFoTgvneF469yS8ZVjA'}
+
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 200:
+        data = response.json()
+        subscribers = data['data']['subscribers']
+        return subscribers
+    elif response.status_code == 400:
+        return 0
     else:
-        return(0)
+        return 0

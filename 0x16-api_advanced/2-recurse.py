@@ -27,6 +27,6 @@ def recurse(subreddit, hot_list=None, after=None):
         else:
             return None
     elif response.status_code == 404:
-        return None  
+        return None
     else:
-        return None  
+        return None

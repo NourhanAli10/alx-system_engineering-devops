@@ -1,6 +1,4 @@
 # File: 0-strace_is_your_friend.pp
-
-# Execute command to fix the issue
 exec { 'fix-apache-500-error':
   command     => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php', 
   path        => '/usr/local/bin/:/bin/' 

@@ -1,4 +1,4 @@
-sudo mysql -u root
+sudo mysql -u root -p
 CREATE USER 'holberton_user'@'localhost' IDENTIFIED BY 'projectcorrection280hbtn';
 GRANT REPLICATION CLIENT ON *.* TO 'holberton_user'@'localhost';
 FLUSH PRIVILEGES;

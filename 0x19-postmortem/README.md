@@ -4,6 +4,8 @@ A postmortem (or post-mortem) is a process intended to help you learn from past 
 
 # Postmortem: Database Outage on March 1, 2024
 
+<img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*yAHNy48W06zLymKwBxClWA.jpeg">
+
 ## Issue Summary:
 
 - Duration: march 1, 2024, 03:30 PM - 05:15 PM

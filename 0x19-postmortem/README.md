@@ -2,7 +2,7 @@
 A postmortem (or post-mortem) is a process intended to help you learn from past incidents. It typically involves an analysis or discussion soon after an event has taken place.
 
 
-# Postmortem: Database Outage on April 15, 2024
+# Postmortem: Database Outage on March 1, 2024
 
 ## Issue Summary:
 
@@ -36,7 +36,7 @@ Implement rigorous testing procedures for database schema migration scripts befo
 Enhance monitoring to include specific checks for deadlock conditions and database transaction errors.
 Update incident response playbooks to include detailed steps for identifying and resolving deadlock issues.
 
-** Tasks to Address the Issue: **
+**Tasks to Address the Issue:**
 
 Conduct a thorough review of recent database schema changes to identify and address potential issues.
 Establish a process for peer review of database schema migration scripts before deployment.
@@ -44,4 +44,5 @@ Enhance documentation on database deadlock resolution procedures for future inci
 
 
 ## Conclusion:
+
 The database outage on march 1, 2024, was caused by a deadlock condition introduced by a flawed schema migration script. The incident was promptly detected, but initial assumptions led to a delay in identifying the root cause. Once the deadlock condition was discovered, corrective measures were taken to roll back the problematic script, restoring normal database operations. To prevent similar incidents in the future, we will focus on improving testing procedures for schema migration scripts, enhancing monitoring for specific database issues, and updating documentation to better guide incident response efforts.

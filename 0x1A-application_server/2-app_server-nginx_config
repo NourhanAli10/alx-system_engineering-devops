@@ -19,6 +19,8 @@ server {
                 proxy_pass http://localhost:5000;
         }
 
+       
+
         location = /404.html {
                 root /var/www/html/;
                 internal;

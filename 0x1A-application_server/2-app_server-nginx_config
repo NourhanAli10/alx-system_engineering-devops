@@ -1,5 +1,5 @@
 ##
-# You should look at the following URL's in order to grasp a solid understanding
+#you should look at the following URL's in order to grasp a solid understanding
 # of Nginx configuration files in order to fully unleash the power of Nginx.
 # https://www.nginx.com/resources/wiki/start/
 # https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
@@ -23,7 +23,6 @@ server {
         listen [::]:80 default_server;
         rewrite ^/redirect_me https://www.google.com/ permanent;
         error_page 404 /error_404.html;
-        	
 
         # SSL configuration
         #
@@ -46,27 +45,21 @@ server {
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
-	    server_name _;
+        server_name _;
 
-	    location / {
-	 	  # First attempt to serve request as file, then
-		    # as directory, then fall back to displaying a 404.
-		      try_files $uri $uri/ =404;
-		}
 
-        location /airbnb-onepage/ {
-                proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
-        }
-
+ 
         location /hbnb_static {
-            alias /data/web_static/current/;
+                alias /data/web_static/current;
+             
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
         }
 
-
-        # Error page configuration
-        location = /error_404.html {
-                root /var/www/html;
-                internal;
+         
+        location /airbnb-onepage/ {
+                proxy_pass http://127.0.0.1/airbnb-onepage/;
         }
 
         # pass PHP scripts to FastCGI server
@@ -107,4 +100,3 @@ server {
 #               try_files $uri $uri/ =404;
 #       }
 #}
-

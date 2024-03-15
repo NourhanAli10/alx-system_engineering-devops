@@ -29,8 +29,8 @@ server {
         proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1;
     }
 
-     # Serve AirBnB_clone_v3 API
-    location /api/ {
+    # serve AirBnB_clone_v3 api
+    location /api {
         proxy_pass http://127.0.0.1:5002/api;
     }
     
@@ -55,19 +55,3 @@ server {
     # ssl_certificate_key /path/to/your/private.key;}
     # Additional server blocks can be added for other domains or subdomains
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-

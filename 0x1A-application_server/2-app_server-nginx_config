@@ -22,6 +22,7 @@ server {
             # Include this line if your app needs WebSockets
             proxy_read_timeout 86400;    
     }
+    
     location /hbnb_static/ {
             alias /data/web_static/current/;    
     }
